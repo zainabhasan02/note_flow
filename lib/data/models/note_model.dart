@@ -5,13 +5,17 @@ part 'note_model.g.dart'; // Run: flutter pub run build_runner build
 @HiveType(typeId: 0)
 class NoteModel extends HiveObject {
   @HiveField(0)
-  String id;
+  String title;
 
   @HiveField(1)
-  String content;
+  String description;
 
   @HiveField(2)
   DateTime createdAt;
 
-  NoteModel({required this.id, required this.content, required this.createdAt});
+  NoteModel({
+    required this.title,
+    required this.description,
+    required this.createdAt,
+  });
 }

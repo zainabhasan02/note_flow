@@ -6,6 +6,7 @@ class AppStrings {
   static const String editNote = 'Edit Note';
   static const String save = 'Save';
   static const String update = 'Update';
-  static const String enterNoteHint = 'Enter your note here...';
+  static const String enterTitleHint = 'Enter your title here...';
+  static const String enterDescHint = 'Enter your description here...';
   static const String noNotesFound = 'No notes found. Tap + to add one!';
 }
