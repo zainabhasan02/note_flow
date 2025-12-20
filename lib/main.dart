@@ -146,7 +146,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       'Created: ${noteIndex.createdAt.toString().substring(0, 16)}',
                       style: const TextStyle(fontSize: 12),
                     ),
-
                     trailing: IconButton(
                       icon: const Icon(Icons.edit),
                       onPressed: () => showNoteDialog(noteIndex),
