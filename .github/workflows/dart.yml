@@ -1,58 +1,50 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: 'Dart (Build & Release)'
+name: Dart (Build & Release)
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
     name: Build & Release
-    runs-on: windows-latest
+    runs-on: macos-latest
 
     steps:
-      - # ⬇️ Checkout source
-      - uses: actions/checkout@v4
+      # ⬇️ Checkout source
+      - uses: actions/checkout@v3
 
       # ⬇️ Setup Java (Android)
       - uses: actions/setup-java@v3
         with:
-          distribution: 'zulu'
-          java-version: '17'
+          distribution: zulu
+          java-version: 17
 
       # ⬇️ Setup Flutter
       - uses: subosito/flutter-action@v2
         with:
-           channel: 'stable'
-           architecture: x64
+          channel: stable
+          architecture: x64
 
       # ⬇️ Install dependencies
       - name: Install dependencies
-        run: |
-          flutter pub get
+        run: flutter pub get
 
-      # 🔵 Build Android
+      # 🔵 Build Android APK
       - name: Build Android APK
-        run: |
-          flutter build apk --release --split-per-abi
+        run: flutter build apk --release --split-per-abi
 
-      # 🔵 Build iOS (IPA)
-      - name: Build iOS IPA
-        run: |
-          flutter build ipa --release --split-per-platform
+      # 🔵 Build iOS (disabled)
+      # - name: Build iOS IPA
+      #   run: flutter build ipa --release
 
       # 🔵 Release to GitHub
-      - name: Push to GitHub
+      - name: Push to GitHub Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/release/*, build/ios/iphoneos/app.ipa"
+          artifacts: build/app/outputs/apk/release/*
           tag: v1.0.${{ github.run_number }}
-          token: ${{ secrets.TOKEN_FOR_GITHUB }}
-
-
+          token: ${{ secrets.TOKEN }}
