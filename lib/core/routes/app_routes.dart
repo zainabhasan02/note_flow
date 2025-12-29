@@ -1,12 +1,21 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:noteflow/core/routes/routes_name.dart';
+import 'package:noteflow/main.dart';
+import 'package:noteflow/views/bmi/bmi_screen.dart';
+import 'package:noteflow/views/home/home_screen.dart';
+import 'package:noteflow/views/login/login_screen.dart';
 import 'package:noteflow/views/notes/notes_screen.dart';
+import 'package:noteflow/views/notes/notes_screen2.dart';
 import 'package:noteflow/views/splash/splash_screen.dart';
 
 class AppRoutes {
   static appRoutes() => [
     GetPage(name: RoutesName.splashScreen, page: () => SplashScreen()),
-    //GetPage(name: RoutesName.myHomePage, page: () => MyHomePage()),
+    GetPage(name: RoutesName.loginScreen, page: () => LoginScreen()),
+    //GetPage(name: RoutesName.mainScreen, page: () => MainScreen()),
+    GetPage(name: RoutesName.homeScreen, page: () => HomeScreen()),
     GetPage(name: RoutesName.notesScreen, page: () => NotesScreen()),
+    GetPage(name: RoutesName.bmiScreen, page: () => BmiScreen()),
+    GetPage(name: RoutesName.notesScreen2, page: () => NotesScreen2()),
   ];
 }

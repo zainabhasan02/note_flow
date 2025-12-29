@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noteflow/core/constants/app_colors.dart';
 import 'package:noteflow/core/constants/app_strings.dart';
 import 'package:noteflow/core/routes/routes_name.dart';
+import 'package:noteflow/core/services/shared_preference/app_preference.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,12 +16,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      Get.offAllNamed(RoutesName.notesScreen);
-    });
+    checkLogin();
   }
 
   @override
@@ -34,5 +36,17 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+
+  void checkLogin() async {
+    bool? isLoggedIn = await AppPreference.getLogin();
+    print('isLoggedIn: $isLoggedIn');
+    Timer(const Duration(seconds: 2), () {
+      if (isLoggedIn == null) {
+        Get.offAndToNamed(RoutesName.loginScreen);
+      } else {
+        Get.offAndToNamed(RoutesName.notesScreen2);
+      }
+    });
   }
 }

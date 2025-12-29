@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteflow/core/constants/app_colors.dart';
 import 'package:noteflow/core/constants/app_strings.dart';
+import 'package:noteflow/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:noteflow/data/boxes/boxes.dart';
 import 'package:noteflow/data/models/note_model.dart';
 
@@ -46,26 +45,36 @@ class _NotesScreenState extends State<NotesScreen> {
                     textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: AppStrings.enterTitleHint,
+                      labelText: AppStrings.enterTitleHint,
                     ),
                   ),
                   SizedBox(height: 10),
+                  //SizedBox.square(),
+                  //SizedBox.expand(),
+                  //SizedBox.shrink(),
                   TextFormField(
                     controller: _descController,
                     textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: AppStrings.enterDescHint,
+                      labelText: AppStrings.enterDescHint,
                     ),
                   ),
                 ],
               ),
             ),
             actions: [
-              TextButton(
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  foregroundColor: Theme.of(context).colorScheme.surfaceTint,
+                ),
                 onPressed: () => Get.back(),
                 child: const Text(AppStrings.cancel),
               ),
+
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: BeveledRectangleBorder(
@@ -93,9 +102,9 @@ class _NotesScreenState extends State<NotesScreen> {
                     noteModel.title = _titleController.text;
                     noteModel.description = _descController.text;
                     noteModel.save();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Note Updated')),
-                    );
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text('Note Updated')));
                   }
 
                   Get.back();
@@ -120,10 +129,11 @@ class _NotesScreenState extends State<NotesScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(AppStrings.appName),
-          centerTitle: true,
+        appBar: CustomAppBarWidget(
+          screenTitle: AppStrings.myNotes,
+          isDrawerOpen: false,
+          onMenuTap: () {},
+          onBackTap: () {},
         ),
         body: ValueListenableBuilder<Box<NoteModel>>(
           valueListenable: _notesBox.listenable(),
@@ -149,13 +159,21 @@ class _NotesScreenState extends State<NotesScreen> {
                       context: context,
                       builder:
                           (context) => AlertDialog(
-                            title: const Text('Confirm Deletion'),
+                            title: const Text(
+                              'Confirm Deletion?',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                             content: const Text(
                               'Are you sure you want to delete this note?',
+                              style: TextStyle(fontSize: 20),
                             ),
                             actions: [
-                              TextButton(
+                              OutlinedButton(
                                 onPressed: () => Get.back(),
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: Colors.black,
+                                  side: const BorderSide(color: Colors.black),
+                                ),
                                 child: const Text('Cancel'),
                               ),
                               ElevatedButton(
@@ -184,48 +202,76 @@ class _NotesScreenState extends State<NotesScreen> {
                     child: const Icon(Icons.delete, color: Colors.white),
                   ),
                   child: Card(
-                    child: ListTile(
-                      onLongPress: () {
-                        print('Created At: ${data[index].createdAt}');
-                        Text(
-                          'Created: ${data[index].createdAt.toString().substring(0, 16)}',
-                          style: const TextStyle(fontSize: 12),
-                        );
-                      },
-                      title: Text(
-                        data[index].title,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 10,
+                        top: 10,
+                        bottom: 10,
                       ),
-                      leading: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.babyBlue,
-                        ),
-                        child: Center(
-                          child: Text(
-                            data[index].title[0],
-                            style: TextStyle(
-                              color: AppColors.blackColor,
-                              fontSize: 25,
+                      child: GestureDetector(
+                        onLongPress:
+                            () => Get.snackbar(
+                              'Created At',
+                              data[index].createdAt.toString(),
+                              snackPosition: SnackPosition.BOTTOM,
                             ),
-                          ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // LEADING (TOP-LEFT)
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.babyBlue,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  data[index].title[0],
+                                  style: TextStyle(
+                                    color: AppColors.blackColor,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            const SizedBox(width: 12),
+
+                            // TITLE + SUBTITLE (CENTER)
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    data[index].title,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    data[index].description,
+                                    style: const TextStyle(fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            // TRAILING (TOP-RIGHT)
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: IconButton(
+                                icon: const Icon(Icons.edit),
+                                onPressed: () => showNoteDialog(data[index]),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      subtitle: Text(
-                        data[index].description,
-                        style: TextStyle(
-                          fontSize: 15,
-                          //fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.edit),
-                        onPressed: () => showNoteDialog(data[index]),
                       ),
                     ),
                   ),
