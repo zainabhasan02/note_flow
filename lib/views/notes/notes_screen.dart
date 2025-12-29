@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteflow/core/constants/app_colors.dart';
 import 'package:noteflow/core/constants/app_strings.dart';
@@ -50,6 +48,9 @@ class _NotesScreenState extends State<NotesScreen> {
                     ),
                   ),
                   SizedBox(height: 10),
+                  SizedBox.square(),
+                  SizedBox.expand(),
+                  SizedBox.shrink(),
                   TextFormField(
                     controller: _descController,
                     textCapitalization: TextCapitalization.sentences,
@@ -93,9 +94,9 @@ class _NotesScreenState extends State<NotesScreen> {
                     noteModel.title = _titleController.text;
                     noteModel.description = _descController.text;
                     noteModel.save();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Note Updated')),
-                    );
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text('Note Updated')));
                   }
 
                   Get.back();

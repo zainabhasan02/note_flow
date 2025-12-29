@@ -6,6 +6,7 @@ import 'package:noteflow/core/constants/app_strings.dart';
 import 'package:noteflow/core/routes/app_routes.dart';
 import 'package:noteflow/core/routes/routes_name.dart';
 import 'package:noteflow/data/models/note_model.dart';
+import 'package:noteflow/views/bmi/bmi_screen.dart';
 import 'package:noteflow/views/notes/notes_screen.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -27,14 +28,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: true,
       title: AppStrings.appName,
-      initialRoute:
-
-      RoutesName.splashScreen,
+      initialRoute: RoutesName.splashScreen,
       getPages: AppRoutes.appRoutes(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: NotesScreen(),
+      home: BmiScreen(),
     );
   }
 }
