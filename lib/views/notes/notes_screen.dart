@@ -49,9 +49,7 @@ class _NotesScreenState extends State<NotesScreen> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  //SizedBox.square(),
-                  //SizedBox.expand(),
-                  //SizedBox.shrink(),
+
                   TextFormField(
                     controller: _descController,
                     textCapitalization: TextCapitalization.sentences,
@@ -74,7 +72,6 @@ class _NotesScreenState extends State<NotesScreen> {
                 onPressed: () => Get.back(),
                 child: const Text(AppStrings.cancel),
               ),
-
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: BeveledRectangleBorder(
