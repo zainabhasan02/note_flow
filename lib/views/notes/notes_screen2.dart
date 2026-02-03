@@ -55,18 +55,18 @@ class _NotesScreen2State extends State<NotesScreen2> {
                                   allNotes[index][DBHelper.COLUMN_NOTE_TITLE];
                               descController.text =
                                   allNotes[index][DBHelper.COLUMN_NOTE_DESC];
-
                               await showModalBottomSheet(
                                 context: context,
                                 isScrollControlled: true,
-                                builder:
-                                    (_) => getBottomSheetWidget(
-                                      isUpdate: true,
+                                //backgroundColor: Colors.transparent,
+                                builder: (_) => SafeArea(
+                                  child: getBottomSheetWidget(isUpdate: true,
                                       sno:
-                                          allNotes[index][DBHelper
-                                              .COLUMN_NOTE_SNO],
-                                    ),
+                                      allNotes[index][DBHelper
+                                          .COLUMN_NOTE_SNO]),
+                                ),
                               );
+
                               getNotes();
                             },
                           ),
@@ -91,13 +91,15 @@ class _NotesScreen2State extends State<NotesScreen2> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           /// Note to be added from here
-          ///
           titleController.clear();
           descController.clear();
-
           await showModalBottomSheet(
             context: context,
-            builder: (_) => getBottomSheetWidget(),
+            isScrollControlled: true,
+            //backgroundColor: Colors.transparent,
+            builder: (_) => SafeArea(
+              child: getBottomSheetWidget(),
+            ),
           );
           getNotes();
         },
