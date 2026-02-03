@@ -108,6 +108,7 @@ class _NotesScreen2State extends State<NotesScreen2> {
     );
   }
 
+
   @override
   void dispose() {
     titleController.dispose();
@@ -127,7 +128,7 @@ class _NotesScreen2State extends State<NotesScreen2> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                isUpdate ? 'Update Note' : 'Add Note',
+                isUpdate ? 'Update Notes' : 'Add Notes',
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
