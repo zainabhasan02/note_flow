@@ -1,3 +1,25 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '../../core/constants/app_strings.dart';
+import '../../core/widgets/app_bar/custom_app_bar_widget.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        'Home Screen',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+
+/*
 import 'package:flutter/material.dart';
 import 'package:noteflow/core/constants/app_strings.dart';
 import 'package:noteflow/core/widgets/app_bar/custom_app_bar_widget.dart';
@@ -46,7 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        NavDrawerWidget(onItemTap: navigateTo),
+        //NavDrawerWidget(onItemTap: navigateTo),
+        //NavDrawerWidget(onItemTap: navigateTo),
         AnimatedContainer(
           duration: const Duration(milliseconds: 250),
           transform: Matrix4.translationValues(xOffset, yOffset, 0)
@@ -67,7 +90,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ],
     );
-    /*return AnimatedContainer(
+    */
+/*return AnimatedContainer(
       height: double.infinity,
       transform:
           Matrix4.translationValues(xOffset, yOffset, 0)
@@ -100,7 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               SizedBox(height: 50),
-              */ /*Container(
+              *//*
+ */
+/*Container(
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -138,7 +164,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(),
                   ],
                 ),
-              ),*/ /*
+              ),*//*
+ */
+/*
               SizedBox(height: 40),
               Column(
                 children: [
@@ -269,6 +297,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-    );*/
+    );*//*
+
   }
 }
+*/
+

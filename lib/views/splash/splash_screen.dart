@@ -16,7 +16,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -39,14 +38,16 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void checkLogin() async {
-    bool? isLoggedIn = await AppPreference.getLogin();
+    await Future.delayed(const Duration(seconds: 2));
+    final isLoggedIn = await AppPreference.getLogin();
     print('isLoggedIn: $isLoggedIn');
-    Timer(const Duration(seconds: 2), () {
-      if (isLoggedIn == null) {
-        Get.offAndToNamed(RoutesName.loginScreen);
-      } else {
-        Get.offAndToNamed(RoutesName.notesScreen2);
-      }
-    });
+
+    if (!mounted) return;
+
+    if (isLoggedIn == true) {
+      Get.offAllNamed(RoutesName.mainScreen);
+    } else {
+      Get.offAllNamed(RoutesName.loginScreen);
+    }
   }
 }

@@ -40,12 +40,12 @@ class _State extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(
+              /*Text(
                 AppStrings.login,
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 30),
-              CircleAvatar(radius: 50, child: Icon(Icons.person, size: 50)),
+              SizedBox(height: 30),*/
+              CircleAvatar(radius: 50, child: Icon(Icons.person_outline, size: 50)),
               SizedBox(height: 30),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
@@ -113,7 +113,7 @@ class _State extends State<LoginScreen> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             await AppPreference.setLogin(true);
-                            Get.offAndToNamed(RoutesName.homeScreen);
+                            Get.offAllNamed(RoutesName.mainScreen);
                             Get.snackbar(
                               'Login',
                               'Login Successful!',

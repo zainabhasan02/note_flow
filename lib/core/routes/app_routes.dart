@@ -9,10 +9,10 @@ import 'package:noteflow/views/notes/notes_screen2.dart';
 import 'package:noteflow/views/splash/splash_screen.dart';
 
 class AppRoutes {
-  static appRoutes() => [
+  static List<GetPage> appRoutes() => [
     GetPage(name: RoutesName.splashScreen, page: () => SplashScreen()),
     GetPage(name: RoutesName.loginScreen, page: () => LoginScreen()),
-    //GetPage(name: RoutesName.mainScreen, page: () => MainScreen()),
+    GetPage(name: RoutesName.mainScreen, page: () => MainScreen()),
     GetPage(name: RoutesName.homeScreen, page: () => HomeScreen()),
     GetPage(name: RoutesName.notesScreen, page: () => NotesScreen()),
     GetPage(name: RoutesName.bmiScreen, page: () => BmiScreen()),
