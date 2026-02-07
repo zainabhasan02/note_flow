@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:noteflow/core/constants/app_colors.dart';
 import 'package:noteflow/core/constants/app_strings.dart';
-import 'package:noteflow/core/widgets/app_bar/custom_app_bar_widget.dart';
 
 class BmiScreen extends StatefulWidget {
   const BmiScreen({super.key});
@@ -21,7 +20,7 @@ class _BmiScreenState extends State<BmiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWidget(screenTitle: AppStrings.yourBMICalculator, isDrawerOpen: false, onMenuTap: () {}, onBackTap: () {}),
+      //appBar: CustomAppBarWidget(screenTitle: AppStrings.yourBMICalculator, isDrawerOpen: false, onMenuTap: () {}, onBackTap: () {}),
       //backgroundColor: AppColors.babyBlue,
       body: Container(
         color: bgColor,
@@ -33,7 +32,7 @@ class _BmiScreenState extends State<BmiScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'BMI Calculator',
+                  AppStrings.yourBMICalculator,
                   style: TextStyle(
                     fontWeight: FontWeight.w800,
                     fontSize: 25,
@@ -49,7 +48,7 @@ class _BmiScreenState extends State<BmiScreen> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    label: Text('Enter your Weight (in kg)'),
+                    label: Text(AppStrings.enterYourWeight),
                     prefixIcon: Icon(Icons.line_weight),
                   ),
                   keyboardType: TextInputType.number,
@@ -64,7 +63,7 @@ class _BmiScreenState extends State<BmiScreen> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    label: Text('Enter your Height (in Feet)'),
+                    label: Text(AppStrings.enterYourHeightFt),
                     prefixIcon: Icon(Icons.height),
                   ),
                   keyboardType: TextInputType.number,
@@ -80,8 +79,8 @@ class _BmiScreenState extends State<BmiScreen> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    label: Text('Enter your Height (in Inches)'),
-                    prefixIcon: Icon(Icons.height ),
+                    label: Text(AppStrings.enterYourHeightIn),
+                    prefixIcon: Icon(Icons.height),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -106,23 +105,25 @@ class _BmiScreenState extends State<BmiScreen> {
                       var msg = '';
                       if (bmi > 25) {
                         bgColor = Colors.orange.shade200;
-                        msg = 'You are overweight';
+                        msg = AppStrings.youAreOverweight;
                       } else if (bmi < 18) {
                         bgColor = Colors.red.shade200;
-                        msg = 'You are underweight';
-                      } else{
+                        msg = AppStrings.youAreUnderweight;
+                      } else {
                         bgColor = Colors.green.shade200;
-                        msg = 'You are healthy';
+                        msg = AppStrings.youAreHealthy;
                       }
 
                       setState(
-                        () => result = '$msg \n Your BMI is: ${bmi.toStringAsFixed(2)}',
+                        () =>
+                            result =
+                                '$msg \n Your BMI is: ${bmi.toStringAsFixed(2)}',
                       );
                       print('Your BMI is: ${bmi.toStringAsFixed(2)}');
                     }
                   },
                   child: Text(
-                    'Calculate BMI',
+                    AppStrings.calculateBMI,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
                   ),
                 ),

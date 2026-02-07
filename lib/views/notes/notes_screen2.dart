@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:noteflow/core/widgets/bottom_sheet_widget/bottom_sheet_widgets.dart';
 import 'package:noteflow/data/local/db_helper.dart';
 
+import '../../core/constants/app_strings.dart';
+
 class NotesScreen2 extends StatefulWidget {
   const NotesScreen2({super.key});
 
@@ -31,7 +33,7 @@ class _NotesScreen2State extends State<NotesScreen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Note Screen')),
+      //appBar: AppBar(title: Text('Note Screen')),
       body:
           allNotes.isNotEmpty
               ? ListView.builder(
@@ -87,7 +89,8 @@ class _NotesScreen2State extends State<NotesScreen2> {
                   );
                 },
               )
-              : Center(child: Text('No Notes yet!!')),
+              : Center(child: Text(AppStrings.noNotesFound,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           /// Note to be added from here

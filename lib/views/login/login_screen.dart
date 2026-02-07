@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:noteflow/core/constants/app_strings.dart';
 import 'package:noteflow/core/routes/routes_name.dart';
 import 'package:noteflow/core/services/shared_preference/app_preference.dart';
 import 'package:noteflow/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:noteflow/core/widgets/custom_button/animated_custom_button.dart';
+
+import '../../core/constants/app_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -30,11 +33,10 @@ class _State extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWidget(
-        screenTitle: AppStrings.login,
-        isDrawerOpen: false,
-        onMenuTap: null,
-        onBackTap: null,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Login', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: AppColors.babyBlue,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -45,7 +47,10 @@ class _State extends State<LoginScreen> {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 30),*/
-              CircleAvatar(radius: 50, child: Icon(Icons.person_outline, size: 50)),
+              CircleAvatar(
+                radius: 50,
+                child: Icon(Icons.person_outline, size: 50),
+              ),
               SizedBox(height: 30),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),

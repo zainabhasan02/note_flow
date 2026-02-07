@@ -14,6 +14,8 @@ import 'controllers/nav_drawer_controller/nav_controller.dart';
 import 'core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'core/widgets/nav_drawer/nav_drawer_widget.dart';
 import 'views/home/home_screen.dart';
+import 'package:vector_math/vector_math_64.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,9 +36,6 @@ class MyApp extends StatelessWidget {
       title: AppStrings.appName,
       initialRoute: RoutesName.splashScreen,
       getPages: AppRoutes.appRoutes(),
-      /*theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),*/
     );
   }
 }
@@ -44,7 +43,6 @@ class MyApp extends StatelessWidget {
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
 
-  //String currentRoute = RoutesName.homeScreen;
   final NavController navController = Get.put(NavController());
 
   final double xOffset = 230;
@@ -75,27 +73,45 @@ class MainScreen extends StatelessWidget {
 
       return Stack(
         children: [
-          NavDrawerWidget(onItemTap: navController.changeRoute),
+          NavDrawerWidget(
+            selectedRoute: navController.currentRoute.value,
+            onItemTap: (route) {
+              navController.navigateTo(route);
+            },
+          ),
           AnimatedContainer(
             duration: const Duration(milliseconds: 250),
             transform: Matrix4.translationValues(
               isOpen ? xOffset : 0,
               isOpen ? yOffset : 0,
               0,
-            )..scale( isOpen ? scaleFactor : 1.0,
-              isOpen ? scaleFactor : 1.0,),
-            decoration: BoxDecoration(
+            )..multiply(
+              Matrix4.diagonal3Values(
+                isOpen ? 0.70 : 1.0,
+                isOpen ? 0.70 : 1.0,
+                1.0,
+              ),
+            ),
+            /*decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(isOpen ? 40 : 0),
-            ),
-            child: Scaffold(
-              appBar: CustomAppBarWidget(
-                screenTitle: 'Note Flow',
-                isDrawerOpen: isOpen,
-                onMenuTap: () => navController.openDrawer(),
-                onBackTap: () => navController.closeDrawer(),
+            ),*/
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(isOpen ? 40 : 0),
+              child: Scaffold(
+                appBar: PreferredSize(
+                  preferredSize: const Size.fromHeight(kToolbarHeight),
+                  child: Obx(
+                    () => CustomAppBarWidget(
+                      screenTitle: navController.currentTitle.value,
+                      isDrawerOpen: navController.isDrawerOpen.value,
+                      onMenuTap: navController.openDrawer,
+                      onBackTap: navController.closeDrawer,
+                    ),
+                  ),
+                ),
+                body: getScreen(navController.currentRoute.value),
               ),
-              body: getScreen(navController.currentRoute.value),
             ),
           ),
         ],
