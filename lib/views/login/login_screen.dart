@@ -35,7 +35,7 @@ class _State extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Login', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text('Login Page for entering', style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: AppColors.babyBlue,
       ),
       body: Center(
