@@ -30,7 +30,11 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Center(
           child: Text(
             AppStrings.exploreNotes,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+              color: AppColors.blackColor,
+            ),
           ),
         ),
       ),

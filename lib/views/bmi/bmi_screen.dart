@@ -15,7 +15,7 @@ class _BmiScreenState extends State<BmiScreen> {
   var ftController = TextEditingController();
   var inController = TextEditingController();
   var result = '';
-  var bgColor = AppColors.babyBlue;
+  var bgColor = AppColors.whiteColor;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,7 @@ class _BmiScreenState extends State<BmiScreen> {
                 Text(
                   AppStrings.yourBMICalculator,
                   style: TextStyle(
+                    color: AppColors.blackColor,
                     fontWeight: FontWeight.w800,
                     fontSize: 25,
                     decoration: TextDecoration.underline,
@@ -47,6 +48,9 @@ class _BmiScreenState extends State<BmiScreen> {
                   validator: (value) => value!.isEmpty ? 'Enter Weight' : null,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
+                    prefixIconColor: AppColors.blackColor,
+                    fillColor: AppColors.blackColor,
+                    focusColor: AppColors.blackColor,
                     border: OutlineInputBorder(),
                     label: Text(AppStrings.enterYourWeight),
                     prefixIcon: Icon(Icons.line_weight),
@@ -62,6 +66,9 @@ class _BmiScreenState extends State<BmiScreen> {
                       (value) => value!.isEmpty ? 'Enter Height in Feet' : null,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
+                    prefixIconColor: AppColors.blackColor,
+                    fillColor: AppColors.blackColor,
+                    focusColor: AppColors.blackColor,
                     border: OutlineInputBorder(),
                     label: Text(AppStrings.enterYourHeightFt),
                     prefixIcon: Icon(Icons.height),
@@ -78,7 +85,10 @@ class _BmiScreenState extends State<BmiScreen> {
                           value!.isEmpty ? 'Enter Height in Inches' : null,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    prefixIconColor: AppColors.blackColor,
+                    fillColor: AppColors.blackColor,
+                    focusColor: AppColors.blackColor,
+                    border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.blackColor)),
                     label: Text(AppStrings.enterYourHeightIn),
                     prefixIcon: Icon(Icons.height),
                   ),
@@ -88,6 +98,10 @@ class _BmiScreenState extends State<BmiScreen> {
 
                 /// Calculate BMI
                 OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppColors.blackColor,
+                    side: const BorderSide(color: AppColors.blackColor)
+                  ),
                   onPressed: () {
                     var wt = wtController.text.toString();
                     var ft = ftController.text.toString();
@@ -124,7 +138,11 @@ class _BmiScreenState extends State<BmiScreen> {
                   },
                   child: Text(
                     AppStrings.calculateBMI,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.blackColor,
+                    ),
                   ),
                 ),
 

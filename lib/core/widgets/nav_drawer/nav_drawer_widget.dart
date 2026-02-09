@@ -82,6 +82,14 @@ class NavDrawerWidget extends StatelessWidget {
               ),
             ),
 
+            /// Changing theme from settings
+            _DrawerItem(
+              title: AppStrings.settings,
+              icon: Icons.settings,
+              isSelected: selectedRoute == RoutesName.settingsScreen,
+              onTap: () => onItemTap(RoutesName.settingsScreen),
+            ),
+
             /// 🔻 LOGOUT BUTTON
             Padding(
               padding: const EdgeInsets.all(16),
@@ -92,7 +100,6 @@ class NavDrawerWidget extends StatelessWidget {
                 onTap: () async {
                   // 🔥 Clear login session here
                   await AppPreference.setLogin(false);
-
                   Get.offAllNamed(RoutesName.loginScreen);
                 },
               ),

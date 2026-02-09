@@ -31,4 +31,5 @@ class AppStrings {
   static const String enterPassword = 'Please enter Password';
   static const String passwordLengthTooShort = 'Password too short.. Please enter at least 6 characters long';
   static const String passwordLengthTooLong = 'Password must be only 10 characters long';
+  static const String settings = 'Settings';
 }

@@ -63,6 +63,7 @@ class _AnimatedCustomButtonState extends State<AnimatedCustomButton>
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.babyBlue,
+            foregroundColor: AppColors.blackColor,
             shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20.0),
               side: BorderSide(color: Colors.black12),
             ),

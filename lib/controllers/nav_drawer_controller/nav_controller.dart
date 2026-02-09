@@ -41,6 +41,8 @@ class NavController extends GetxController {
         return AppStrings.notes;
       case RoutesName.bmiScreen:
         return AppStrings.bmiCalculator;
+      case RoutesName.settingsScreen:
+        return AppStrings.settings;
       default:
         return AppStrings.appName;
     }

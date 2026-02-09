@@ -23,7 +23,7 @@ class CustomAppBarWidget extends StatelessWidget
       backgroundColor: AppColors.babyBlue,
       title: Text(
         screenTitle,
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800, color: AppColors.blackColor),
       ),
       centerTitle: true,
       leading: IconButton(

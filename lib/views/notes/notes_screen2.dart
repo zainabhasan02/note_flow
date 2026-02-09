@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:noteflow/core/constants/app_colors.dart';
 import 'package:noteflow/core/widgets/bottom_sheet_widget/bottom_sheet_widgets.dart';
 import 'package:noteflow/data/local/db_helper.dart';
 
@@ -92,6 +93,8 @@ class _NotesScreen2State extends State<NotesScreen2> {
               : Center(child: Text(AppStrings.noNotesFound,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
       floatingActionButton: FloatingActionButton(
+        foregroundColor: AppColors.blackColor,
+        backgroundColor: AppColors.babyBlue,
         onPressed: () async {
           /// Note to be added from here
           titleController.clear();
